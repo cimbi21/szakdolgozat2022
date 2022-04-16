@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>CodeNames</title>
+</head>
+<body style="background: #002a53;">
+<div>
+    <div>
+
+    <h1 th:if="${game.end == false}" class="display-4" style="width:80%; float:left; text-align: center; color: white" th:text="'Utalás: '+${game.newClue.word.toUpperCase()}+', '+${game.newClue.number}"></h1>
+        <h1 th:if="${game.end == true && game.lose == true}" class="display-3" style="width:80%; float:left; text-align: center; color: white" th:text="'Felfedtél egy bérgyilkos!'"></h1>
+        <h1 th:if="${game.end == true && game.lose == false}" class="display-3" style="width:80%; float:left; text-align: center; color: white" th:text="'Gratulálok nyertél!'"></h1>
+
+
+        <form action="#" th:action="@{/game}" th:if="${game.end == true}" method="get">
+            <button type="submit" class="btn btn-success" role="button" aria-disabled="true" style="margin:17px; width: 16%; font-size: 20pt;line-height: 70px;" th:text="Újra" ></button>
+        </form>
+        <form action="#" th:action="@{/game/pass}" th:if="${game.end == false}" method="post">
+            <button type="submit"class="btn btn-danger" style="float:left; margin: 17px; width: 16%; font-size: 20pt;line-height: 70px;" th:text="Passz" ></button>
+        </form>
+    <h1 th:if="${game.end == false}" class="display-6" style="font-size: 1.5rem; width:80%; line-height: 0;text-align: center; color: white" th:text="'Jelölj be '+${game.newClue.number}+' kapcsolódó szót.'"></h1>
+        <h1 th:unless="${game.end == false}" class="display-6" style="font-size: 1.5rem; width:80%; line-height: 0;text-align: center; color: white" th:text="'Pontszámod:  '+${game.score}+'!'"></h1>
+
+    </div>
+</div>
+
+<br>
+<div th:each="g: ${game.board.cards}" style="width: 20%;  float: left"  th:switch="${g.color}">
+    <form action="#" th:action="@{/game}" th:object="${k}" method="post">
+        <input type="hidden" th:value="${g.word}" name="word" >
+        <input type="hidden" th:value="false" name="revealed" >
+        <input type="hidden" th:value="-1" name="color" >
+
+
+        <button type="submit" class="btn btn-primary" th:if="${g.marked == false && g.revealed == false}" style="margin: 17px; width: 80%; border: transparent 10px solid; font-size: 17pt;line-height: 7vh;" th:text="${g.word.toUpperCase()}"></button>
+        <button type="submit" class="btn btn-primary disabled" th:case="'2'" th:if="${g.marked == true && g.revealed == true}" style="margin: 17px; width: 80%; border: green 10px solid;font-size: 17pt;line-height: 7vh;" th:text="${g.word.toUpperCase()}"></button>
+        <button type="submit" class="btn btn-primary disabled" th:case="'1'" th:if="${g.marked == true && g.revealed == true}" style="margin: 17px; width: 80%; border: grey 10px solid;font-size: 17pt;line-height: 7vh;" th:text="${g.word.toUpperCase()}"></button>
+        <button type="submit" class="btn btn-primary disabled" th:case="'0'" th:if="${g.marked == true && g.revealed == true }" style="margin: 17px; width: 80%; border: black 10px solid;font-size: 17pt;line-height: 7vh;" th:text="${g.word.toUpperCase()}"></button>
+    </form>
+</div>
+</body>
+</html>

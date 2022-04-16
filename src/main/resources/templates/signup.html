@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<div th:replace="fragments/header :: header (title='Regisztráció')"></div>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div id="signup">
+  <h1>Regisztráció</h1>
+  <form  th:action="@{/signup}" th:object="${user}" method="post">
+    <div class="form-group">
+      <label for="name">Név</label>
+      <input type="text" class="form-control" id="name" th:field="*{name}">
+      <span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+    <div class="form-group">
+      <label for="username">Felhasználónév</label>
+      <input type="text" class="form-control" id="username" th:field="*{username}">
+      <span class="validationError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" th:field="*{email}">
+      <span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+    <div class="form-group">
+      <label for="password">Jelszó</label>
+      <input type="password" class="form-control" id="password" th:field="*{password}">
+      <span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </div>
+    <div class="form-group">
+      <label for="birthDate">Születési idő:</label>
+      <input type="date" class="form-control" id="birthDate" value="2000-12-04" th:field="*{birthDate}">
+      <span class="validationError" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Regisztráció</button>
+  </form>
+</div>
+</body>
+</html>
