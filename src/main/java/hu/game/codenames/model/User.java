@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.*;
@@ -19,12 +18,15 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
+    private String firstname;
+    private String surname;
     private String username;
     private String password;
+    private String password2;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
+
     @Email
     private String email;
     private boolean enabled;

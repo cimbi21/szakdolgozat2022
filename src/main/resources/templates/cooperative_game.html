@@ -13,7 +13,7 @@
     <div>
 
     <h1 th:if="${game.end == false}" class="display-4" style="width:80%; float:left; text-align: center; color: white" th:text="'Utalás: '+${game.newClue.word.toUpperCase()}+', '+${game.newClue.number}"></h1>
-        <h1 th:if="${game.end == true && game.lose == true}" class="display-3" style="width:80%; float:left; text-align: center; color: white" th:text="'Felfedtél egy bérgyilkos!'"></h1>
+        <h1 th:if="${game.end == true && game.lose == true}" class="display-3" style="width:80%; float:left; text-align: center; color: white" th:text="'Felfedtél egy bérgyilkost!'"></h1>
         <h1 th:if="${game.end == true && game.lose == false}" class="display-3" style="width:80%; float:left; text-align: center; color: white" th:text="'Gratulálok nyertél!'"></h1>
 
 
@@ -23,9 +23,8 @@
         <form action="#" th:action="@{/game/pass}" th:if="${game.end == false}" method="post">
             <button type="submit"class="btn btn-danger" style="float:left; margin: 17px; width: 16%; font-size: 20pt;line-height: 70px;" th:text="Passz" ></button>
         </form>
-    <h1 th:if="${game.end == false}" class="display-6" style="font-size: 1.5rem; width:80%; line-height: 0;text-align: center; color: white" th:text="'Jelölj be '+${game.newClue.number}+' kapcsolódó szót.'"></h1>
-        <h1 th:unless="${game.end == false}" class="display-6" style="font-size: 1.5rem; width:80%; line-height: 0;text-align: center; color: white" th:text="'Pontszámod:  '+${game.score}+'!'"></h1>
-
+    <h1 th:if="${game.end == false}" class="display-6" style="font-size: 1.5rem; width:80%; line-height: 0;text-align: center; color: white" th:text="'Jelölj be '+${game.newClue.number}+' kapcsolódó szót!'"></h1>
+        <h1 th:unless="${game.end == false}" class="display-6" style="font-size: 1.5rem; width:80%; line-height: 0;text-align: center; color: white" th:text="'Pontszámod:  '+${game.info.getScore()}"></h1>
     </div>
 </div>
 
@@ -35,8 +34,6 @@
         <input type="hidden" th:value="${g.word}" name="word" >
         <input type="hidden" th:value="false" name="revealed" >
         <input type="hidden" th:value="-1" name="color" >
-
-
         <button type="submit" class="btn btn-primary" th:if="${g.marked == false && g.revealed == false}" style="margin: 17px; width: 80%; border: transparent 10px solid; font-size: 17pt;line-height: 7vh;" th:text="${g.word.toUpperCase()}"></button>
         <button type="submit" class="btn btn-primary disabled" th:case="'2'" th:if="${g.marked == true && g.revealed == true}" style="margin: 17px; width: 80%; border: green 10px solid;font-size: 17pt;line-height: 7vh;" th:text="${g.word.toUpperCase()}"></button>
         <button type="submit" class="btn btn-primary disabled" th:case="'1'" th:if="${g.marked == true && g.revealed == true}" style="margin: 17px; width: 80%; border: grey 10px solid;font-size: 17pt;line-height: 7vh;" th:text="${g.word.toUpperCase()}"></button>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="hu">
 
-<div th:replace="fragments/header :: header (title='Regisztráció')"></div>
+<div th:replace="fragments/header :: header (title='Bejelentkezés')"></div>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 <div id="login">
     <h1>Bejelentkezés</h1>
+    <p th:if="${loginError} == true">Sikertelen bejelentkezés! Rossz felhazsnálónév/helszó!</p>
     <form  th:action="@{/login}" th:object="${user}" method="post">
         <div class="form-group">
             <label for="username">Felhasználónév</label>

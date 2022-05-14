@@ -6,11 +6,18 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 <div id="signup">
   <h1>Regisztráció</h1>
+  <p>Adja meg az adatait! A jelszónak min. 8 max. 20 karakternek kell lennie, tartalmaznia kell minumum egy betűt, továbbá egy speciális karakter! </p>
+  <!--/*@thymesVar id="user" type="hu.game.codenames.model.User"*/-->
   <form  th:action="@{/signup}" th:object="${user}" method="post">
     <div class="form-group">
-      <label for="name">Név</label>
-      <input type="text" class="form-control" id="name" th:field="*{name}">
-      <span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+      <label for="surname">Vezetéknév</label>
+      <input type="text" class="form-control" id="surname" th:field="*{surname}">
+      <span class="validationError" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+    </div>
+    <div class="form-group">
+      <label for="firstname">Keresztnév</label>
+      <input type="text" class="form-control" id="firstname" th:field="*{firstname}">
+      <span class="validationError" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
     </div>
     <div class="form-group">
       <label for="username">Felhasználónév</label>
@@ -26,6 +33,11 @@
       <label for="password">Jelszó</label>
       <input type="password" class="form-control" id="password" th:field="*{password}">
       <span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </div>
+    <div class="form-group">
+      <label for="password2">Jelszó újra</label>
+      <input type="password" class="form-control" id="password2" th:field="*{password2}">
+      <span class="validationError" th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}"></span>
     </div>
     <div class="form-group">
       <label for="birthDate">Születési idő:</label>

@@ -1,6 +1,5 @@
 package hu.game.codenames.config;
 
-
 import  hu.game.codenames.model.User;
 import hu.game.codenames.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 
 @Component
 @Slf4j
@@ -22,8 +20,7 @@ public class UserDataSetup implements ApplicationListener<ContextRefreshedEvent>
 
 
     @Autowired
-    public UserDataSetup(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserDataSetup(UserRepository userRepository) {this.userRepository = userRepository;
     }
 
     @Autowired
@@ -41,13 +38,15 @@ public class UserDataSetup implements ApplicationListener<ContextRefreshedEvent>
         }
 
         User user = new User();
-        user.setEnabled(true);
         user.setPassword(passwordEncoder.encode("asdqwe"));
         user.setUsername("test");
         user.setEmail("test@test.com");
-        userRepository.save(user);
-        alreadySetup = true;
+       //userRepository.save(user);
+
         log.info("test user and data saved");
+
+        alreadySetup = true;
+
 
     }
 }

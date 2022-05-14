@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<div th:replace="fragments/header :: header (title='Robotok')"></div>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="card" style="width: 70rem; margin: auto; margin-top: 70px; text-align: center">
+    <div class="card-body" >
+        <h1 class="card-title">Mátrixok</h1>
+       <h3>FastText</h3>
+        <p>Szavak vektoros reprezentációit építjük fel úgy, hogy egy neurális háló szótöredékek alapján próbálja megjósolni, egy szó környezetében melyik másik szerepelhet, és ezeknek a vektoroknak a bezárt szöge adja a szavak távolságát</p>
+        <h3>NPMI</h3>
+        <p>Két szó közelsége az alapján készített mátrix, mely az alapján készült, hogy hányszor fordulnak elő együtt a szavak egy szövegben a saját gyakoriságukhoz képest.
+        </p>
+        <h3>NPMI<sup>2</sup></h3>
+        <p>Két szó közelsége az alapján készített mátrix, mely az alapján készült, hogy hányszor fordulnak elő mindkét szó bármelyik harmadik szó társaságában.
+        </p>
+        <h3>NPMI gráf</h3>
+        <p>Ebben a mátrixban egyhálózatot építünk olyan szópárokból, amelyek gyakran fordulnak elő együtt, és ebben a hálózatban nézzük a két szó közelségét.
+        </p>
+        <br>
+        <p>A beállítások során a kiválaszthatjuk a nyelvet, a felhasznált mátrixot, a pontozó függvényt és természetesen az utalások számát. Választható lehetőségek:
+        </p>
+        <p>Nyelv: Angol, Magyar</p>
+        <p>Mátrix: FastText, NPMI, NPMI2, NPMI Graph</p>
+        <p>Pontozó függvények: Koyyalagunta, KoyyalaguntaRestrict, Harmonic, HarmonicDivide</p>
+        <p>Utalások száma: Kettő, Három, Négy, Öt</p>
+
+        <a th:href="@{/settings}" class="btn btn-primary btn-lg" >Start</a>
+    </div>
+</div>
+<div style="margin: auto; width: 40rem; color: white; padding-top: 20px; text-align: center" >
+    <div style="margin: auto">
+        <p>
+            <b>Készítők:</b>
+            <br>
+            Kémfőnök AI: Cserháti Réka (cserhatir@gmail.com)
+            <br>
+            Alkalmazás: Kolláth István (kollathistvan@gmail.com)
+        </p>
+    </div>
+</div>
+</body>
+</html>

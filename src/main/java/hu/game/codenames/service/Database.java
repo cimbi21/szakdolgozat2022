@@ -6,12 +6,7 @@ import java.sql.*;
 
 public class Database {
     Connection conn;
-    //külső
-    String db = "postgres://lzffpvgrhfvhvn:2c027ca10319b722f6d5aeb9c9b235ba6b59fed39365c52e3d8cbd076969424a@ec2-54-171-25-232.eu-west-1.compute.amazonaws.com:5432/d42sm6g1mt9e8t";
-    //belső
-    //String db = "postgres://vistnazgifunwq:91b8480e359f2c05b4f1b1be282b87fed9e9f23abbb1cb51831430fdb0dc9b5f@ec2-52-208-229-228.eu-west-1.compute.amazonaws.com:5432/dc40g1393q66rb";
-    //angol
-    //String db = "postgres://mzwtacrzgzhcue:98e4f20669efa0fced8a134657de1678f9aec71cd206c25736728b35d12b4638@ec2-54-216-17-9.eu-west-1.compute.amazonaws.com:5432/dcvrc5l2dgvlql";
+    String db="";
     URI dbUri = new URI(db);
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];

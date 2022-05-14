@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<div th:replace="fragments/header :: header (title='Játékszabály')"></div>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="card" style="width: 40rem; margin: auto; margin-top: 70px; text-align: center">
+    <div class="card-body" >
+        <h2 class="card-title">Szabályok</h2>
+        <h5>Játssz egy robotkémfőnök ügynökeként!</h5>
+        <p style="text-align: justify">A Fedőnevek négyszemközt játék szabályait felhasználva, 25szintén 25 kártya található a pályán. Ebből 9 zöld, 13 szürke, 3 fekete található. Célunk minél több zöld szó megtalálása. Egy kör akkor ér véget amikor fel van fedve az összes zöld kártya, vagy amikor felfedésre kerül egy fekete. A játékos akkor nyer, ha megtalálta az összes zöld kártyát, veszíteni pedig akkor, ha felfedte a fekete kártyát. Amennyiben egy utalásra nem szeretne tippelni, kártyát felfedni, lehetősége van passzolni. Passzolás esetén kap egy új utalást. A játékos a kör során pontokat gyűjt. Amennyiben: </p>
+        <p>Zöld kártyát fed fel: 50 pontot kap</p>
+        <p>Szürke kártyát fed fel: 10 pontot veszít, de kap egy új utalást</p>
+        <p>Fekete kártyát fed fel: 100 pontot veszít és véget ér a játék</p>
+        <p>Passzol: 5 pontot veszít, de kap egy új utalást</p>
+
+        <p>A fentiekből látható, hogy jobban jár a játékos a passz lehetőséggel, mint a tippeléssel. A játék során célunk minél több pont elérése.</p>
+        <a th:href="@{/settings}" class="btn btn-primary btn-lg">Start</a>
+    </div>
+</div>
+<div style="margin: auto; width: 40rem; color: white; padding-top: 20px; text-align: center" >
+    <div style="margin: auto">
+        <p>
+            <b>Készítők:</b>
+            <br>
+            Kémfőnök AI: Cserháti Réka (cserhatir@gmail.com)
+            <br>
+            Alkalmazás: Kolláth István (kollathistvan@gmail.com)
+        </p>
+    </div>
+</div>
+</body>
+</html>

@@ -4,33 +4,39 @@
 <div th:replace="fragments/header :: header (title='Játszmáim')"></div>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
-<div id="games">
-    <h1>Játszmáim</h1>
-    <table class="table">
+<div id="games" style="width: 70%; margin: auto; margin-top: 70px; padding:25px; background-color: white">
+    <h1 style="text-align: center">Játszmáim</h1>
+    <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Nyelv</th>
+            <th scope="col">Mátrix</th>
+            <th scope="col">Függvény</th>
+            <th scope="col">Utalás</th>
+            <th scope="col">Passz</th>
+            <th scope="col">Zöld</th>
+            <th scope="col">Szürke</th>
+            <th scope="col">Pontszám</th>
+            <th scope="col">Kezdés</th>
+            <th scope="col">Befejezés</th>
+            <th scope="col">Eredmény</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+        <tr th:each="g: ${games}">
+            <td th:text="${g.getLang()}"></td>
+            <td th:text="${g.getMatrix()}"></td>
+            <td th:text="${g.getFunc()}"></td>
+            <td th:text="${g.getClueNum()}"></td>
+            <td th:text="${g.getPassNum()}"></td>
+            <td th:text="${g.getGreenCardNum()}"></td>
+            <td th:text="${g.getGreyCardNum()}"></td>
+            <td th:text="${g.getScore()}"></td>
+            <td th:text="${g.getStart()}"></td>
+            <td th:text="${g.getCreatedAt()}"></td>
+            <td th:if="${g.isWin()}" th:text="'Győzelem'"></td>
+            <td th:unless="${g.isWin()}" th:text="'Vereség'"></td>
+
         </tr>
         </tbody>
     </table>

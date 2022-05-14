@@ -17,6 +17,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
+import static org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion.$2B;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -28,9 +30,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/settings").permitAll()
+                .antMatchers("/rules").permitAll()
+                .antMatchers("/bots").permitAll()
                 .antMatchers("/game/**").permitAll()
                 .antMatchers("/styles/**", "/images/**").permitAll()
-                .antMatchers("/api/**", "/api-v2/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -45,14 +48,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder($2B,31);
     }
 
     public DataSource dataSource;
 
     @Autowired
     private UserDetailsService userDetailsService;
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

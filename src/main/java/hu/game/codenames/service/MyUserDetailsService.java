@@ -29,32 +29,24 @@ public class MyUserDetailsService implements UserDetailsService{
     }
 
     @Override
-    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(usernameOrEmail);
-
-        if(user == null){
-            user = userRepository.findByEmail(usernameOrEmail);
-
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
             if(user == null){
-                throw new UsernameNotFoundException("Could not find user with username (or email): " + usernameOrEmail);
-            }
+                throw new UsernameNotFoundException("Could not find user with username (or email): " + username);
         }
-
         log.info(user.getUsername() + " found");
         return user;
     }
 
-    public User myData(String name){
-        List<User> originalList = userRepository.findAll();
-        System.out.println(originalList);
-        List<User> filteredList = originalList.stream()
-                .filter(t -> t.getUsername().equals(name))
-                .collect(Collectors.toList());
-        return filteredList.get(0);
+    public boolean usernameCheck(String username){
+        User user = userRepository.findByUsername(username);
+        if(user == null) {
+            return false;
+        }
+        return true;
     }
 
     public void registerUser(User user) {
-        user.setEnabled(true);
         userRepository.save(user);
         log.info("user registered: " + user);
     }
